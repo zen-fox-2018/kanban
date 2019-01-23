@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+  <title>client</title>
+  <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDNBwOQEsVqu0nM44zJJERqUj9x-yKGiGg",
+      authDomain: "kanban-24700.firebaseapp.com",
+      databaseURL: "https://kanban-24700.firebaseio.com",
+      projectId: "kanban-24700",
+      storageBucket: "kanban-24700.appspot.com",
+      messagingSenderId: "725014584296"
+    };
+    firebase.initializeApp(config);
+
+    // Initialize Cloud Firestore through Firebase
+    var db = firebase.firestore();
+
+    function backlog(params) {
+      db.collection("backlog").doc().set({
+        title: "Los Angeles",
+        desc: "CA",
+        points: 100,
+        assignedTo: "taqi",
+      })
+        .then(function () {
+          console.log("Document successfully written!");
+        })
+        .catch(function (error) {
+          console.error("Error writing document: ", error);
+        });
+    }
+    function todo(params) {
+      db.collection("todo").doc().set({
+        title: "Los Angeles",
+        desc: "CA",
+        points: 100,
+        assignedTo: "taqi",
+      })
+        .then(function () {
+          console.log("Document successfully written!");
+        })
+        .catch(function (error) {
+          console.error("Error writing document: ", error);
+        });
+    }
+    function doing(params) {
+      db.collection("doing").doc().set({
+        title: "Los Angeles",
+        desc: "CA",
+        points: 100,
+        assignedTo: "taqi",
+      })
+        .then(function () {
+          console.log("Document successfully written!");
+        })
+        .catch(function (error) {
+          console.error("Error writing document: ", error);
+        });
+    }
+    function done(params) {
+      db.collection("done").doc().set({
+        title: "Los Angeles",
+        desc: "CA",
+        points: 100,
+        assignedTo: "taqi",
+      })
+        .then(function () {
+          console.log("Document successfully written!");
+        })
+        .catch(function (error) {
+          console.error("Error writing document: ", error);
+        });
+    }
+
+  </script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but client doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+</body>
+
+</html>
