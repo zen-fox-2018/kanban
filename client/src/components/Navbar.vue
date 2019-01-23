@@ -1,6 +1,6 @@
 <template>
     <div>
-  <b-navbar type="dark" variant="primary" toggleable>
+  <b-navbar type="light" variant="primary" toggleable>
     <b-navbar-toggle target="nav_dropdown_collapse"></b-navbar-toggle>
     <b-collapse is-nav id="nav_dropdown_collapse">
       <b-navbar-nav>
@@ -13,7 +13,7 @@
           <b-dropdown-item href="#">RU</b-dropdown-item>
           <b-dropdown-item href="#">FA</b-dropdown-item>
         </b-nav-item-dropdown>
-        <b-nav-item-dropdown text="User" right >
+        <b-nav-item-dropdown text="User" float-right >
           <b-dropdown-item href="#">Account</b-dropdown-item>
           <b-dropdown-item href="#">Settings</b-dropdown-item>
         </b-nav-item-dropdown>
