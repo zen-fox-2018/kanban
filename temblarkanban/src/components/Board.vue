@@ -8,7 +8,7 @@
       :color="color"
       dark
     >
-      <v-toolbar-title>{{name_board}}</v-toolbar-title>
+      <v-toolbar-title>{{status_board}}</v-toolbar-title>
     </v-toolbar>
 
     <v-card>
@@ -17,8 +17,8 @@
         grid-list-lg
       >
         <v-layout row wrap>
-          <div id="data" v-for="(item, i) in cardData"  :key="i" >
-            <Card :card_info="item" />
+          <div id="data" v-for="(item, i) in card"  :key="i" >
+            <Card :card_info="item" :index="index" />
           </div>
         </v-layout>
       </v-container>
@@ -30,33 +30,35 @@
 import Card from '@/components/Card.vue'
 export default {
     name: 'Board',
-    props: ['color', 'name_board', 'card' , 'status_board'],
+    props: ['color', 'index' , 'status_board'],
     components : {
         Card
     },
     data() {
       return {
-        cardData: []
+        card : []
       }
     },
     created () {
-      this.getData()
-    },
-    watch : {
-      card: {
-        handler: function() {
-          this.getData()
-        },
-        deep : true
-      }
+      this.getCardData()
     },
     methods :{
-      getData() {
-         this.cardData = this.card.filter(e => {
-           return e.status === this.status_board
-         })
-
-      }
+      getCardData() {
+        this.$db.collection('cards')
+        .onSnapshot((snapshot) => {
+          var dataCard = []
+          snapshot.forEach(e => {
+            dataCard.push({
+              id: e.id,
+              ...e.data()
+              })
+          })
+          this.card = dataCard.filter(e => {
+            return e.status === this.status_board
+          })
+          // console.log(this.card)
+        })
+      },
     }
 }
 </script>

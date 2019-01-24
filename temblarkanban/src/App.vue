@@ -16,7 +16,7 @@
           <v-layout  justify-space-around row fill-height wrap>
 
              <v-flex xs12 sm6 md3 order-md1 order-sm3 v-for="(item , i) in list" :key="i">
-                <Board :name_board="item.name" :color="item.color" :card="card" :status_board="i" />
+                <Board :status_board="item.status" :color="item.color" :index="i" />
              </v-flex>
 
 
@@ -36,43 +36,27 @@ export default {
     Board,
     Create
   },
-  created() {
-    this.getCardData()
-  },
   data () {
     return {
       list: [
         {
-          name : 'Back Log',
+          status : 'Back Log',
           color : 'error',
         },
         {
-          name : 'To-Do',
+          status : 'To-Do',
           color : 'warning',
         },
         {
-          name : 'Doing',
+          status : 'Doing',
           color : 'info',
         },
         {
-          name : 'Done',  
+          status : 'Done',  
           color : 'success',
         }
       ],
-      card: [],
     }
   },
-  methods : {
-    getCardData () {
-      let dataCard = []
-      this.$db.collection('cards')
-      .onSnapshot((snapshot) => {
-        snapshot.forEach(e => {
-          dataCard.push(e.data())
-        })
-      });
-        this.card = dataCard
-    }
-  }
 }
 </script>
