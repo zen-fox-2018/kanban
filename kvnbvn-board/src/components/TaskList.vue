@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import db from '@/scripts/config.js'
+// import db from '@/scripts/config.js'
 export default {
     data () {
         return {

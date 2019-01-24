@@ -39,7 +39,7 @@
 <script>
 
 import Board from '@/components/Board.vue'
-import db from '@/scripts/config.js'
+// import db from '@/scripts/config.js'
 
 export default {
   name: 'home',
@@ -86,6 +86,7 @@ export default {
             this.doing = []
             this.done = []
           querySnapshot.forEach((doc) => {
+            console.log(doc.data() ,'=======')
             if(doc.data().status === 1) {
               this.backLog.unshift({id: doc.id, ...doc.data() }) 
             } else if (doc.data().status === 2) {
@@ -100,7 +101,7 @@ export default {
       console.log(this.backLog, '===== backlog')
     }
   },
-  mounted() {
+  created() {
     this.fetch()
   }
 }

@@ -6,9 +6,22 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>kvnbvn-board</title>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <script>
+      var config = {
+        apiKey: "AIzaSyAQ53gm79Qm9uS7E3s7HVTWMmZb0PRvdbM",
+        authDomain: "kvnbvn-board.firebaseapp.com",
+        databaseURL: "https://kvnbvn-board.firebaseio.com",
+        projectId: "kvnbvn-board",
+        storageBucket: "kvnbvn-board.appspot.com",
+        messagingSenderId: "506826530027"
+      }
+      firebase.initializeApp(config);
+
+      var db = firebase.firestore();
+    </script>
   </head>
   <body>
-
     <noscript>
       <strong>We're sorry but kvnbvn-board doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
