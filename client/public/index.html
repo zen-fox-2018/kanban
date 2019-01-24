@@ -5,11 +5,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
-  <title>client</title>
+  <link rel="shortcut icon" href="https://cdn4.iconfinder.com/data/icons/product-management-flat-icons/270/Product_Box-512.png" type="image/x-icon">
+  <title>MyKanban</title>
   <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
   <script>
     // Initialize Firebase
@@ -26,6 +26,8 @@
     // Initialize Cloud Firestore through Firebase
     var db = firebase.firestore();
 
+
+    //SEEDER or Initial Data
     function backlog(params) {
       db.collection("backlog").doc().set({
         title: "Los Angeles",

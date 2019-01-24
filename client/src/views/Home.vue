@@ -1,6 +1,7 @@
 <template>
   <div>
-    <v-container grid-list-xs>
+    <v-container grid-list-xs text-md-center>
+      <formadd></formadd>
       <v-layout row wrap>
         <v-flex xs3>
           <h2>Backlog</h2>
@@ -25,11 +26,18 @@
 
 <script>
 import board from "../components/Board";
+import formadd from '../components/FormAdd';
 
 export default {
   props: ["backlogdata", "tododata", "doingdata", "donedata"],
   components: {
-    board
-  }
+    board,
+    formadd
+  },
+  data() {
+    return {
+      
+    }
+  },
 };
 </script>

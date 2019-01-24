@@ -26,7 +26,7 @@ export default {
     };
   },
   created() {
-    db.collection("backlog").onSnapshot((querySnapshot) => {
+    db.collection("backlog").orderBy("created", "asc").onSnapshot((querySnapshot) => {
       let counter = 0
       let data = []
       querySnapshot.forEach((element, index) => {
