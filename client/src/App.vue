@@ -1,0 +1,22 @@
+<template>
+  <v-app>
+    <navbar />
+    <router-view />
+  </v-app>
+</template>
+
+<script>
+import navbar from '@/components/navbar'
+
+export default {
+  name: 'App',
+  components: {
+    navbar
+  },
+  data () {
+    return {
+      //
+    }
+  }
+}
+</script>
