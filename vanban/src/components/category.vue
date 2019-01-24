@@ -3,23 +3,25 @@
           header-text-variant="white"
           header-tag="header"
           :header-bg-variant="cardCol"
-          style="max-width: 20rem;"
+          style="width: 21rem;"
+          class="mx-2"
     >
-    <task />
+    <cardTask v-for="task in tasks" :detail="task" :key="task.id"/>
   </b-card>
 </template>
 
 <script>
-import task from './task.vue'
+import cardTask from './task.vue'
 
 export default {
     name: 'category',
     props: {
         cardCol: String,
-        status: String
+        status: String,
+        tasks: Array
     },
     components: {
-        task,
+        cardTask,
     }
 }
 </script>

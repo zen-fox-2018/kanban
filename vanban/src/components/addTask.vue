@@ -10,7 +10,7 @@
             </b-form-group>
 
             <b-form-group label="Point :" class="text-left">
-                <b-form-input type="number" v-model="point" required placeholder="Enter task point"> </b-form-input>
+                <b-form-input type="number" v-model="points" required placeholder="Enter task point"> </b-form-input>
             </b-form-group>
 
             <b-form-group label="Assigned to :" class="text-left">
@@ -24,25 +24,37 @@
 </template>
 
 <script>
+import db from '@/scripts/config.js'
+
 export default {
     name: 'modalAddTask',
     data () {
         return {
             title: '',
             description: '',
-            point: 0,
+            points: 0,
             assigned: '',
         }
     },
     methods: {
         addTask () {
-            var docRef = db.collection('tasks')
-
-            var setAda = docRef.set({
-            title: this.title,
-            description: this.description,
-            point: this.point,
-            assigned: this.assigned
+            db.collection("tasks").add({
+                title: this.title,
+                description: this.description,
+                points: this.points,
+                assigned: this.assigned,
+                status: 1
+            })
+            .then((docRef) => {
+                this.$emit('closeAddTask')
+                swal("Good job!", "You submit this task!", "success");
+                this.title = ''
+                this.description = ''
+                this.points = 0
+                this.assigned = ''
+            })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
             });
 
         },
