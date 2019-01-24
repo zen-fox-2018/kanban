@@ -1,7 +1,8 @@
 <template>
   <div class="about">
-    <navbar></navbar>
-    <h1>This is an about page</h1>
+    <navbar @showModal="showAdd = true"></navbar>
+    <br>
+    <formadd v-show="showAdd" @hideshow="showAdd=false"></formadd>
     <b-container class="bv-example-row" >
       <b-row>
         <b-col>
@@ -25,19 +26,22 @@
 <script>
 import taskbox from '@/components/taskBox.vue'
 import navbar from '@/components/Navbar.vue'
+import formadd from '@/components/FormAddTask.vue'
 import db from "@/scripts/config.js"
 export default {
   name: 'About',
   components: {
     taskbox,
-    navbar
+    navbar,
+    formadd
   },
   data() {
     return {
       backlog: [],
       done: [],
       todo: [],
-      doing: []
+      doing: [],
+      showAdd: false
     }
   },
   methods: {

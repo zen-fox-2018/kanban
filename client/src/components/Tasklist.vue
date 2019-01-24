@@ -9,7 +9,7 @@
                 <b-col>
                 <b-button @click="back" variant="outline-success" v-if="list.status > 1 ">Back</b-button>
                 <b-button @click="next" variant="outline-success" v-if="list.status < 4">Next</b-button>
-                 <b-button @click="destroy" variant="outline-success">Delete</b-button>
+                 <b-button @click="destroy" variant="danger">Delete</b-button>
                 </b-col>
             </b-row>
         </b-card>

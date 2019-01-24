@@ -1,7 +1,8 @@
 <template>
-  <div>
-<b-modal ref="myModalRef" hide-footer title="Using Component Methods">
-    <b-form @submit="addtask"  v-if="show">
+  <div class="text-center">
+    
+<b-modal id="modal1" hide-footer title="Add Task" >
+    <b-form @submit.prevent="addtask"  >
       <b-form-group id="exampleInputGroup1"
                     label="Title:"
                     label-for="exampleInput1"
@@ -44,33 +45,47 @@
         </b-form-input>
       </b-form-group>
       
-      <b-button type="submit" variant="primary">Add Task</b-button>
+      <b-button type="submit" variant="primary" @click="hideModal">Add Task</b-button>
     </b-form>
-    <b-btn class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-btn>
 </b-modal>
   </div>
 </template>
 
 <script>
+import db from "@/scripts/config.js";
 export default {
     data () {
         return {
-            tittle: "",
+            title: "",
             description: "",
             point: "",
             assigned: ""
         }
     },
     methods: {
-        Addtask () {
-            
+        addtask () {
+            let addtask = {
+                title: this.title,
+                description: this.description,
+                point: this.point,
+                assigned: this.assigned,
+                status: 1
+            }
+            db
+              .collection("Tasks")
+              .add(addtask)
+              .then(function(docRef) {
+                              this.$emit('hideshow')
+                console.log("Document written with ID: ", docRef.id);
+              })
+              .catch(function(error) {
+                console.error("Error adding document: ", error);
+              });
+
         },
-    showModal () {
-      this.$refs.myModalRef.show()
-    },
-    hideModal () {
-      this.$refs.myModalRef.hide()
-    }
+        hideModal () {
+            this.$emit('hideshow')
+        }
     }
 }
 </script>
