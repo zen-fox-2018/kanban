@@ -1,5 +1,8 @@
 # kanban
 
+Link deploy : https://kanbanvue.firebaseapp.com/#/
+
+
 ## Project setup
 ```
 npm install
