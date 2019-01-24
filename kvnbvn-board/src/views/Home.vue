@@ -10,7 +10,6 @@
     <div>
       <b-modal ref="myModalRef" hide-footer title="Create New Task">
         <div class="d-block text-center">
-          <!-- <form action="/action_page.php"> -->
             <div class="form-group">
               <input v-model="title" type="text" class="form-control" id="title" placeholder="Title">
             </div>
@@ -20,7 +19,6 @@
             <div class="form-group">
               <input v-model="assignTo" type="text" class="form-control" id="assignTo" placeholder="Assign To">
             </div>
-        <!-- </form> -->
         </div>
         <b-btn class="mt-3" variant="outline-dark" block @click="createTask">Add Task</b-btn>
       </b-modal>
