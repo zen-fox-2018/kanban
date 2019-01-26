@@ -1,7 +1,7 @@
 # kanban
 
 Link deploy : 	https://kanbanvue.firebaseapp.com/#/
-		http://kanban.abednegolubis.online/#/
+		http://daily.abednegolubis.online/#/
 
 ## Project setup
 ```
