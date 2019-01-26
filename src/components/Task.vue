@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-card :header="detail.title || 'no title'">
+        <b-card :header="detail.title || 'no title'"  :header-bg-variant="color">
                 <p class="card-text">Point : {{detail.point || 'no points' }}</p>
                 <p class="card-text">Assigned to : {{detail.assigned || 'no assignee'}}</p>
                 <div class="d-flex">
@@ -43,7 +43,7 @@ import swal from 'sweetalert'
 import db from '@/script/config.js'
 
 export default {
-    props : ["detail", "button", "colors"],
+    props : ["detail", "button", "color"],
     data() {
         return {
             modalShow: false

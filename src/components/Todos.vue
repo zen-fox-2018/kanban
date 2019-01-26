@@ -5,11 +5,17 @@
             header-tag="header">          
             <draggable v-model="tasks" :options="{group:'id'}" @start="drag=true" @end="drag=false" @change="handleChange">     
                 <div v-for="task in tasks" :key="task.id">
-                    <Task :detail="task" :button="types.button" class="my-2"> </Task>
+                    <Task :detail="task" :button="types.button" :color="types.color" class="my-2"> </Task>
                 </div>
             </draggable>
     </b-card>
-</template>
+</template>db.collection("tasks").doc(this.detail.id).update({
+                "status": status
+            })
+            .then(() => {
+                console.log("Document successfully updated!");
+                this.hideModal()
+            });
 
 <script>
 import db from '@/script/config.js'
