@@ -2,19 +2,25 @@
     
     <b-card class="todos" :header="types.title"
             :header-bg-variant="types.color"
-            header-tag="header">               
-            <div v-for="task in tasks" :key="task.id">
-                <Task :detail="task" :button="types.button" class="my-2"> </Task>
-            </div>
-        
+            header-tag="header">          
+            <draggable v-model="tasks" :options="{group:'id'}" @start="drag=true" @end="drag=false" @change="handleChange">     
+                <div v-for="task in tasks" :key="task.id">
+                    <Task :detail="task" :button="types.button" class="my-2"> </Task>
+                </div>
+            </draggable>
     </b-card>
 </template>
 
 <script>
 import db from '@/script/config.js'
 import Task from '@/components/Task.vue'
+import draggable from 'vuedraggable'
 
 export default {
+    components: {   
+        Task,
+        draggable
+    },
     props : ["types"],
     data() {
         return {
@@ -35,10 +41,20 @@ export default {
                     this.tasks.push(obj)
                 });
             });
+        },
+        handleChange(){
+            // console.log(arguments, "=================")
+            if(arguments[0].added){
+                console.log(arguments[0].added.element.id)
+                console.log((this.types.status))
+                db.collection("tasks").doc(arguments[0].added.element.id).update({
+                    "status": this.types.status
+                })
+                .then(() => {
+                    console.log("Document successfully updated!");
+                });
+            }
         }
-    },
-    components : {
-        Task
     }
 }
 </script>

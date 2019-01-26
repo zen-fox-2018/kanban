@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import vueKanban from 'vue-kanban'
 import Home from './views/Home.vue'
 
 Vue.use(Router)
+Vue.use(vueKanban)
 
 export default new Router({
   routes: [
