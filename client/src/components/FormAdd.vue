@@ -2,6 +2,7 @@
   <v-layout row justify-center>
     <v-dialog v-model="dialog" persistent max-width="600px">
       <v-btn slot="activator" color="primary" dark>Add task</v-btn>
+      
       <v-card>
         <v-card-title>
           <span class="headline">Add Task Form</span>

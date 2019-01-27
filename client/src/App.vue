@@ -1,6 +1,7 @@
 <template>
-  <v-app>
+  <v-app :dark="isDark">
     <home 
+    v-on:godark="isDark = !isDark"
     v-bind:backlogdata="backlogData"
     v-bind:tododata="todoData"
     v-bind:doingdata="doingData"
@@ -19,6 +20,7 @@ export default {
   },
   data() {
     return {
+      isDark: false,
       backlogData: [],
       todoData: [],
       doingData: [],
