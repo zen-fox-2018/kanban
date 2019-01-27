@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3>New Task</h3>
     <form @submit.prevent="addTask">
       <div class="form-group">
         <label>Title</label>
@@ -20,6 +19,7 @@ import {db} from '@/config.js'
 
 export default {
   name: 'FormKanban',
+  props: ['callTask'],
   data() {
     return {
       title: '',
@@ -35,28 +35,19 @@ export default {
         status: 'Back-Log'
       })
         .then(function(docRef) {
-            console.log("Document written with ID: ", docRef.id);
+          this.title = ''
+          this.description = ''
+          console.log("Document written with ID: ", docRef.id);
         })
         .catch(function(error) {
-            console.error("Error adding document: ", error);
+          console.error("Error adding document: ", error);
         });
     },
-    listenDb() {
-      db
-        .collection("kanban")
-        .onSnapshot(({docs}) => {
-          // let arr = docs.map(doc => doc.data())
-          // this.$emit('tasks', arr)
-          let arr = []
-          docs.forEach(element => {
-            arr.push({id: element.id, data: element.data()})
-          });
-          this.$emit('tasks', arr)
-        });
-    }
   },
-  mounted() {
-    this.listenDb()
+  watch: {
+    callTask(v) {
+      console.log(v)
+    }
   }
 }
 </script>

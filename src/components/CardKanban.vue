@@ -9,10 +9,12 @@
       <div class="card-body">
         <p> {{ task.data.description }} </p>
       </div>
-      <div class="card-footer" v-for="status in payload.dataButton" :key="status.id">
-        <button class="btn btn-outline-warning" @click="updateTask(task, status)">
-          {{status}}
-        </button>
+      <div class="card-footer">
+        <div v-for="button in payload.dataButton" :key="button.id">
+          <button class="btn btn-outline" :style="button.style" @click="updateTask(task, button.status)">
+            {{button.status}}
+          </button><hr>
+        </div>
       </div>
     </div>
   </div>
@@ -61,3 +63,4 @@ export default {
   }
 }
 </script>
+

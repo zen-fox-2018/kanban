@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card mt-5">
     <div class="card-header" :style="payload.style">
       <h5> {{ payload.title }} </h5>
     </div>

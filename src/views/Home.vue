@@ -1,7 +1,8 @@
 <template>
   <div class="home container">
-    <a href="" @click="showForm">New Task</a>
-    <form-kanban @tasks="getTasks" />
+    <a href="" v-if="!newData" @click.prevent="showForm">New Task</a>
+    <a href="" v-else @click.prevent="showForm">Close Form</a>
+    <form-kanban v-if="newData" :callTask="newData" />
     <div class="row">
       <div class="col-3">
         <board-kanban :payload="backLog" />
@@ -21,9 +22,9 @@
 
 <script>
 // @ is an alias to /src
+import {db} from '@/config.js'
 import BoardKanban from '@/components/BoardKanban.vue'
 import FormKanban from '@/components/FormKanban.vue'
-// import CardKanban from '@/components/CardKanban.vue'
 
 export default {
   name: 'home',
@@ -35,43 +36,71 @@ export default {
   data() {
     return {
       backLog: {
-        style: 'background-color: red;',
+        style: 'background-color: orange;',
         title: 'Back-Log',
         tasks: '',
-        dataButton: ['To-Do', 'Delete']
+        dataButton: [
+          {status: 'To-Do', style: 'background-color: yellow;'}, 
+          {status: 'Delete', style: 'background-color: red;'}]
       },
       todo: {
         style: 'background-color: yellow;',
         title: 'To-Do',
         tasks: '',
-        dataButton: ['Back-Log', 'Doing', 'Delete']
+        dataButton: [
+          {status: 'Back-Log', style: 'background-color: orange;'},
+          {status: 'Doing', style: 'background-color: deepskyblue;'},
+          {status: 'Delete', style: 'background-color: red;'}]
       },
       doing: {
         style: 'background-color: deepskyblue;',
         title: 'Doing',
         tasks: '',
-        dataButton: ['To-Do', 'Done', 'Delete']
+        dataButton: [
+          {status: 'To-Do', style: 'background-color: yellow;'},
+          {status: 'Done', style: 'background-color: lime;'}, 
+          {status: 'Delete', style: 'background-color: red;'}]
       },
       done: {
         style: 'background-color: lime;',
         title: 'Done',
         tasks: '',
-        dataButton: ['Doing', 'Delete']
+        dataButton: [
+          {status: 'Doing', style: 'background-color: deepskyblue;'}, 
+          {status: 'Delete', style: 'background-color: red;'}]
       },
       newData: false,
-      tasks: []
+      tasks: [],
+      callTask: false
     }
   },
   methods: {
     showForm() {
-      this.newData ? false : true
+      let status = this.newData ? false : true
+      this.newData = status
     },
     getTasks(tasks) {
       this.backLog.tasks = tasks.filter(task => task.data.status == 'Back-Log')
       this.todo.tasks = tasks.filter(task => task.data.status == 'To-Do')
       this.doing.tasks = tasks.filter(task => task.data.status == 'Doing')
       this.done.tasks = tasks.filter(task => task.data.status == 'Done')
+    },
+    callTaskMethod() {
+      this.callTask = true
     }
+  },
+  created() {
+    db
+      .collection("kanban")
+      .onSnapshot(({docs}) => {
+        // let arr = docs.map(doc => doc.data())
+        // this.$emit('tasks', arr)
+        let arr = []
+        docs.forEach(element => {
+          arr.push({id: element.id, data: element.data()})
+        });
+        this.getTasks(arr)
+      });
   }
 }
 </script>
