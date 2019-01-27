@@ -5,8 +5,12 @@
             Show Detail
         </v-btn>
       <v-card>
-        <v-card-title class="headline">Use Google's location service?</v-card-title>
-        <v-card-text>Let Google help apps determine location. This means sending anonymous location data to Google, even when no apps are running.</v-card-text>
+        <v-card-title class="headline">Detail Task :{{card_info.title}} for {{card_info.assignedto}}</v-card-title>
+        <v-card-text>Task Description : {{card_info.description}} </v-card-text>
+        <br><br>
+        <v-card-text>Point : {{card_info.point}}</v-card-text>
+        <br><br>
+        <v-card-text>Status : {{card_info.status}}</v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="warning" v-if="prev"  @click="backCard">{{ prev_to }}</v-btn>
